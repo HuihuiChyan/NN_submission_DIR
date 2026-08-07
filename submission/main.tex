@@ -42,12 +42,12 @@
 \let\WriteBookmarks\relax
 
 \shorttitle{DIR: Document-grounded Iterative Refinement}
-\shortauthors{H. Huang et al.}
+\shortauthors{W. Liu et al.}
 
 \title[mode=title]{DIR: Aligning LLMs with Complex Instruction via Document-grounded Iterative Refinement}
 
-\author[hit]{Hui Huang}
 \author[hit]{Wei Liu}
+\author[hit]{Hui Huang}
 \author[shenzhen]{Kehai Chen}
 \author[nju]{Jiaheng Liu}
 \author[hit]{Yancheng He}
@@ -90,6 +90,17 @@
 Large Language Models (LLMs) must follow complex, multi-constraint instructions to address sophisticated real-world tasks. Existing instruction-synthesis methods, however, often produce low-diversity or contextually irrelevant data whose constraints depart from human preferences. We propose DIR (Document-grounded Iterative Refinement), a framework that distills unstructured human documents into complex instruction data. DIR first extracts an initial instruction from a source document and then iteratively refines it, grounding each refinement in the document to incorporate nuanced constraints. To align models with the resulting data, we introduce a constraint-aware optimization pipeline that combines supervised fine-tuning on teacher-curated pairs with reinforcement learning using a hybrid reward system. Experiments show that DIR-optimized models improve FollowBench HSR by 12.79 points and achieve a 149\% relative win-rate increase on AlpacaEval 2.0, substantially outperforming existing baselines.
 \end{abstract}
 
+\begin{graphicalabstract}
+\includegraphics[width=0.5\textwidth]{source/intro.pdf}
+\end{graphicalabstract}
+
+\begin{highlights}
+\item DIR derives complex instructions from unstructured human documents.
+\item Iterative refinement grounds constraints in document content and model errors.
+\item Constraint-aware SFT and RL jointly improve instruction following.
+\item DIR improves FollowBench HSR and AlpacaEval 2.0 over existing baselines.
+\end{highlights}
+
 \begin{keywords}
 Complex instruction \sep Instruction following \sep LLM alignment \sep Large language models
 \end{keywords}
@@ -106,9 +117,9 @@ Complex instruction \sep Instruction following \sep LLM alignment \sep Large lan
 \input{content/7_Conclusion}
 
 \section*{CRediT authorship contribution statement}
-\textbf{Hui Huang:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft, Writing -- review \& editing.
-
 \textbf{Wei Liu:} Methodology, Software, Validation, Formal analysis, Writing -- review \& editing.
+
+\textbf{Hui Huang:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft, Writing -- review \& editing.
 
 \textbf{Kehai Chen:} Methodology, Investigation, Writing -- review \& editing.
 
