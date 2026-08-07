@@ -17,7 +17,10 @@ Building upon the high-quality instruction data \textbf{DIR-10K}, we present a c
 The first stage involves Supervised Fine-Tuning (SFT) \citep{ouyang2022training} using the standard negative log-likelihood (NLL) loss:
 
 \begin{equation}
-\mathcal{L}_{SFT}(\theta) = -\sum_{t=1}^{T} \log P_{\theta}(R_t | R_{<t}, I)
+\begin{aligned}
+\mathcal{L}_{SFT}(\theta) & = \\
+& \quad -\sum_{t=1}^{T} \log P_{\theta}(R_t \mid R_{<t}, I)
+\end{aligned}
 \end{equation}
 
 \noindent where $I$ represents the complex instruction and $R$ denotes the curated response. Since our instructions are iteratively refined to incorporate diverse real-world constraints, this stage enables the model to establish a foundational mapping between complex instructions and desired outputs.
