@@ -36,7 +36,12 @@ To bridge these gaps, we propose constraint-aware Reinforcement Learning (RL) th
 For subjective constraints such as sentiment and tone, we train a discriminative reward model $r_\phi$ using the Bradley-Terry objective:
 
 \begin{equation}
-\mathcal{L}_{RM}(\phi) = -\mathbb{E}_{(I, R_w, R_l) \sim \mathcal{D}_{pref}} \left[ \log \sigma \left( r_\phi(I, R_w) - r_\phi(I, R_l) \right) \right]
+\begin{aligned}
+\mathcal{L}_{RM}(\phi)
+&= -\mathbb{E}_{(I, R_w, R_l) \sim \mathcal{D}_{pref}}
+\left[ \log \sigma \left( r_\phi(I, R_w) \right.\right. \\
+&\hspace{5.7em}\left.\left.{} - r_\phi(I, R_l) \right) \right]
+\end{aligned}
 \end{equation}
 
 \noindent where $R_w$ and $R_l$ are the chosen and rejected responses.
@@ -47,14 +52,14 @@ We leverage the iterative nature of the DIR framework to construct high-quality 
 To mitigate the potential degradation of general capabilities during reinforcement learning, we augment the preference data with samples from the \textit{Skywork-Reward-Preference-80K-v0.2} dataset \citep{liu2025skywork} at a 1:1 ratio. This balanced mixture ensures that the reward model maintains a robust assessment of both general and complex instruction alignment.
 
 \subsubsection{Rule-based Reward}
-For verifiable hard constraints (e.g., length, keyword inclusion), we employ automated scripts to generate a binary signal $V(x, y) \in \{0, 1\}$. To prioritize these hard constraints over stylistic nuances, we implement a Constraint-prioritized Reward Fusion strategy:
+For verifiable hard constraints (e.g., length, keyword inclusion), we employ automated scripts to generate a binary signal $V(\mathbf{c}, R) \in \{0, 1\}$, where $\mathbf{c}$ denotes the set of hard constraints specified in $I$. To prioritize these hard constraints over stylistic nuances, we implement a Constraint-prioritized Reward Fusion strategy:
 
 \begin{equation}
 \mathcal{R}(I, R) =
 \begin{cases}
-\sigma(r_\phi(I, R)) & \text{if no hard constraint in }I \\
-0.5 + 0.5 \cdot \sigma(r_\phi(I, R)) & \text{if } V(I, R) = 1 \\
-0.5 \cdot \sigma(r_\phi(I, R)) & \text{if } V(I, R) = 0
+\sigma(r_\phi(I, R)) & \text{if } \mathbf{c} = \varnothing \\
+0.5 + 0.5 \cdot \sigma(r_\phi(I, R)) & \text{if } V(\mathbf{c}, R) = 1 \\
+0.5 \cdot \sigma(r_\phi(I, R)) & \text{if } V(\mathbf{c}, R) = 0
 \end{cases}
 \end{equation}
 
