@@ -1,0 +1,119 @@
+\documentclass[a4paper,fleqn]{cas-dc}
+
+\usepackage[authoryear]{natbib}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[mathcal]{euscript}
+
+% Keep figures from accumulating behind large two-column tables.
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{5}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\topfraction}{0.90}
+\renewcommand{\bottomfraction}{0.70}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.70}
+\renewcommand{\dbltopfraction}{0.78}
+\renewcommand{\dblfloatpagefraction}{0.99}
+
+\definecolor{deepgreen}{RGB}{0, 70, 0}
+\definecolor{deepred}{RGB}{182, 32, 22}
+
+\ExplSyntaxOn
+\keys_set:nn { stm / mktitle } { nologo }
+\ExplSyntaxOff
+
+\begin{document}
+\let\WriteBookmarks\relax
+
+\shorttitle{DIR: Document-grounded Iterative Refinement}
+\shortauthors{H. Huang et al.}
+
+\title[mode=title]{DIR: Aligning LLMs with Complex Instruction via Document-grounded Iterative Refinement}
+
+\author[hit]{Hui Huang}
+\author[hit]{Wei Liu}
+\author[shenzhen]{Kehai Chen}
+\author[nju]{Jiaheng Liu}
+\author[hit]{Yancheng He}
+\author[hit]{Lvyuan Han}
+\author[hit]{Wenhao Jiang}
+\author[hit]{Muyun Yang}
+\author[cas]{Zhaoxiang Zhang}
+\author[hit]{Tiejun Zhao}
+\cormark[1]
+\ead{tjzhao@hit.edu.cn}
+
+\cortext[1]{Corresponding author.}
+
+\affiliation[hit]{
+  organization={Faculty of Computing, Harbin Institute of Technology},
+  city={Harbin},
+  postcode={150001},
+  country={China}
+}
+\affiliation[shenzhen]{
+  organization={School of Computer Science and Technology, Harbin Institute of Technology},
+  city={Shenzhen},
+  postcode={518055},
+  country={China}
+}
+\affiliation[nju]{
+  organization={School of Intelligence and Technology, Nanjing University},
+  city={Suzhou},
+  postcode={215163},
+  country={China}
+}
+\affiliation[cas]{
+  organization={Institute of Automation, Chinese Academy of Sciences},
+  city={Beijing},
+  postcode={100190},
+  country={China}
+}
+
+\begin{abstract}
+Large Language Models (LLMs) must follow complex, multi-constraint instructions to address sophisticated real-world tasks. Existing instruction-synthesis methods, however, often produce low-diversity or contextually irrelevant data whose constraints depart from human preferences. We propose DIR (Document-grounded Iterative Refinement), a framework that distills unstructured human documents into complex instruction data. DIR first extracts an initial instruction from a source document and then iteratively refines it, grounding each refinement in the document to incorporate nuanced constraints. To align models with the resulting data, we introduce a constraint-aware optimization pipeline that combines supervised fine-tuning on teacher-curated pairs with reinforcement learning using a hybrid reward system. Experiments show that DIR-optimized models improve FollowBench HSR by 12.79 points and achieve a 149\% relative win-rate increase on AlpacaEval 2.0, substantially outperforming existing baselines.
+\end{abstract}
+
+\begin{keywords}
+Complex instruction \sep Instruction following \sep LLM alignment \sep Large language models
+\end{keywords}
+
+\maketitle
+
+\input{content/1_Introduction}
+\input{content/2_RelatedWork}
+\input{content/3_Dataset}
+\input{content/4_Approach}
+\input{content/5_Experiments}
+\input{content/6_Ablations}
+\input{content/6_Ablations2}
+\input{content/7_Conclusion}
+\clearpage
+
+% The appendix is retained for a later decision on supplementary material.
+% \appendix
+% \input{content/8_Appendix}
+
+% Add author contributions with \credit{} after authorship is confirmed.
+% \printcredits
+
+\bibliographystyle{cas-model2-names}
+\bibliography{main}
+
+\end{document}
