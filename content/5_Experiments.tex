@@ -30,7 +30,7 @@ We mainly compare with the following methods of complex instruction generation a
     % \item \textbf{Automatically rewritten complex instruction data}: This includes Evol-Instruct \cite{xu2023wizardlm}, ISHEEP \cite{isheep}, Muffin \cite{lou2023muffin} and Conifer \cite{sun2024conifer}, which initiate with simple instructions and progressively construct more complex ones through rewriting or recombination.
     % \item \textbf{Automatically back-translated complex instruction data}: This includes Suri \cite{pham2024suri} and Crab \cite{qi2024constraint}, which curate the complex instructions and constraints by back-translating the pre-existing response. These methods are the closest to our work.
 
-We also compare with the original back-translation and back-and-forth translation \citep{cao2023instruction, nguyen2024better}, where IIR is skipped and initial instructions are directly used. All methods are compared using 10k instruction-response pairs to ensure consistency.
+We also compare with the original methods of back-translation and back-and-forth translation  \citep{cao2023instruction, nguyen2024better}, where IIR is skipped and initial instructions are directly used. All methods are compared using 10k instruction-response pairs to ensure consistency.
 
 \begin{table}[!t]
 \centering
@@ -194,7 +194,7 @@ The efficacy of DIR-RL is largely attributable to our novel RM training strategy
 \subsection{Controlled Comparison of Instruction Synthesis Method}
 \label{sec:controlled_comparison}
 
-Despite the superior performance reflected in Table \ref{table:main_results}, the fine-tuned results can be influenced by confounding variables. To isolate the direct impact of the instruction data quality, we conducted an additional set of experiments under a strictly controlled environment. In this setting, we re-generated datasets for all baseline methods using the identical source corpus (\textbf{Dolma v1.7}) and guidance model (\textbf{Llama-3-70B-Instruct}) employed in our DIR framework. After that, we performed SFT on the same base model with the same hyper-parameters. This ensures a direct "apples-to-apples" comparison of different instruction synthesis methods.
+Despite the superior performance reflected in Table \ref{table:main_results}, the fine-tuned results can be influenced by confounding variables. To isolate the direct impact of the instruction data quality, we conducted an additional set of experiments under a strictly controlled environment. In this setting, we re-generated datasets for all baseline methods using the identical source corpus (\textbf{Dolma v1.7}) and guidance model (\textbf{Llama-3-70B-Instruct}) employed in our DIR framework. After that, we performed SFT on the same base model with the same hyper-parameters. This ensures a direct  comparison of different instruction synthesis methods.
 
 As shown in Table \ref{table:controlled_comparison}, DIR-10K consistently outperforms other synthesis methods across both complex and general instruction benchmarks under controlled conditions. This confirms that the observed gains on instruction following are attributable to the data synthesis method rather than the initial choice of data or models. Notably, the results also reveal the sensitivity of different methods to initial configurations: while Self-Instruct and Suri scaled effectively with our source corpus, other methods such as Conifer and Crab showed diminished performance, suggesting their original performance may have benefited from specific private data distributions.
 

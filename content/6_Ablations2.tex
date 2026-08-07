@@ -220,7 +220,7 @@ Regarding the additional checking step (+ check), where generated constraints ar
 
 In this section, we investigate the impact of various SFT configurations on DIR's performance, focusing primarily on two key factors: the sampling strategy for document selection and the volume of training data.
 
-As detailed in Section \ref{sec:document_collection}, we utilize density-based sampling to ensure the diversity of our document set. To verify the effectiveness of this approach, we compared it against two baselines for selecting SFT samples:
+As detailed in Section \ref{sec:document_collection}, we utilize density-based sampling to ensure the diversity of our document set. To verify the effectiveness, we compared this method against two baselines for selecting SFT samples:
 
 \begin{enumerate}[itemsep=1mm, parsep=0pt, leftmargin=*]
     \item \textbf{Random 1K}: Randomly selecting 1K samples.
@@ -358,12 +358,12 @@ Furthermore, our improved GRPO consistently outperforms other popular RL algorit
 
 Previous methods have indicated LLMs may suffer from capability degradation during preference alignment phase, which is also known as alignment tax ~\citep{ouyang2022training}. To evaluate this concern, we tested our DIR method on several fundamental capability benchmarks: 1) World Knowledge: MMLU \citep{hendrycks2021measuring}; 2) Commonsense Reasoning: CommonsenseQA (CQA) \citep{talmor-etal-2019-commonsenseqa} and Natural Questions (NQ) \citep{kwiatkowski2019natural}; 3) Coding: HumanEval \citep{chen2021evaluatinglargelanguagemodels}; and 4) Mathematics: GSM8K \citep{cobbe2021trainingverifierssolvemath}. 
 
-\begin{figure*}[pos=tbp]
-\centering
-\includegraphics[width=0.88\linewidth]{source/pipeline_demo.pdf}
-\caption{An End-to-End Document-grounded Iterative Refinement Example.}
-\label{figure:pipeline_case}
-\end{figure*}
+% \begin{figure*}[pos=tbp]
+% \centering
+% \includegraphics[width=0.88\linewidth]{source/pipeline_demo.pdf}
+% \caption{An End-to-End Document-grounded Iterative Refinement Example.}
+% \label{figure:pipeline_case}
+% \end{figure*}
 
 \begin{table*}[t]
 \centering
@@ -473,8 +473,8 @@ As shown in Table \ref{table:fundamental}, our method does not have a negative i
 
 % These findings suggest that DIR's effectiveness is not strictly dependent on large guidance models. The method effectively leverages both document knowledge and model knowledge through judging mechanism to generate meaningful constraints, making it practical and efficient even with relatively smaller guidance models. 
 
-\subsection{Case Study}
+% \subsection{Case Study}
 
 % This section presents a detailed end-to-end demonstration of our pipeline in Figure \ref{figure:pipeline_case}. The case study provides a thorough walkthrough of each stage in our instruction generation and refinement process.
 
-To intuitively demonstrate how the DIR framework transforms unstructured documents into high-quality complex instructions, we provide an end-to-end example in Figure \ref{figure:pipeline_case}. As shown, through the document-grounded iterative refinement process, a complex instruction incorporating multifaceted constraints, including tone, structure, and citation requirements, is ultimately synthesized. This demonstrates that the DIR framework can effectively mine implicit human preferences within documents and transform them into explicit complex alignment signals.
+% To intuitively demonstrate how the DIR framework transforms unstructured documents into high-quality complex instructions, we provide an end-to-end example in Figure \ref{figure:pipeline_case}. As shown, through the document-grounded iterative refinement process, a complex instruction incorporating multifaceted constraints, including tone, structure, and citation requirements, is ultimately synthesized. This demonstrates that the DIR framework can effectively mine implicit human preferences within documents and transform them into explicit complex alignment signals.

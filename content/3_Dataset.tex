@@ -69,7 +69,7 @@ An effective sample for complex instruction alignment should adhere to two key p
 
 These constraints highlight the model’s weaknesses in handling complex instructions and require further improvement. Conversely, if a constraint does not meet these principles, it indicates that the constraint falls within the model’s current capabilities and does not require additional learning.
 
-Therefore, we introduce constraint generation using LLM-judge guidance \citep{zheng2023judging}, which mimics the human process of iteratively refining prompts to form complex instructions. During the iteration process, this method leverages the guidance model to judge the current response and identifies the constraints that the model fails to satisfy, thereby expanding simple instructions into complex ones, as shown in Algorithm \ref{alg:iir}.
+Therefore, we introduce constraint generation using LLM-judge guidance \citep{zheng2023judging}, which mimics the human process of iteratively refining prompts to form complex instructions. During the iteration process, this method leverages the guidance model to judge the current response and identifies the constraints that the model fails to satisfy, expanding simple instructions into complex ones, as shown in Algorithm \ref{alg:iir}.
 
 % With the refined document as $R$, this method expands simple instructions $Q_o$ into complex ones through the following steps\footnote{Detailed prompt templates are presented in Appendix \ref{appendix:prompt_iir}.}:
 
@@ -108,7 +108,7 @@ Therefore, we introduce constraint generation using LLM-judge guidance \citep{zh
 %     \item Repeat the above three steps for multiple rounds to uncover increasingly complex constraints, thereby increasing the difficulty and depth of the instructions.
 % \end{enumerate}
 
-Throughout the iterative judgment process, as the number of constraints increases, the model's response also improves, making the identification of new constraints more challenging. Therefore, we utilize the refined document as the reference answer for judgment. Human-written documents inherently contain vast amounts of knowledge and formatting conventions that reflect human preferences. By grounding the constraint-generation process in documents, we achieve constraints that align more closely with human preferences.
+Throughout the iteration process, as the number of constraints increases, the model's response also improves, making the identification of new constraints more challenging. Therefore, we utilize the refined document as the reference answer for judgment. Human-written documents inherently contain vast amounts of knowledge and formatting conventions that reflect human preferences. By grounding the constraint-generation process in documents, we achieve constraints that align more closely with human preferences.
 
 Finally, the constraint set is merged into a new instruction. Note that two constraint sets are derived: the first set $C_n$ satisfies Principle 1, while the second set $C_n'$, which includes an additional checking step, satisfies both Principle 1 and 2.
 % \footnote{An example of the IIR process is presented in Appendix \ref{appendix:pipeline_case}.}
@@ -128,10 +128,10 @@ Finally, the constraint set is merged into a new instruction. Note that two cons
 \begin{figure}[pos=htbp]
 \centering
 \includegraphics[width=0.78\linewidth]{source/data_visualization/length_distribution.pdf}
-\caption{Distribution of instruction and response length on DIR-10K.}
+\caption{Distribution of sample length on DIR-10K.}
 \label{figure:length_dist}
 \end{figure}
 
 Utilizing our proposed framework, we constructed a high-quality complex instruction dataset, \textbf{DIR-10K}, based on openly available documents\footnote{We use a subset of Dolma v1.7 \citep{dolma-2024} following \citet{nguyen2024better}.}. Figure \ref{figure:constraint_dist} illustrates the evolution of constraint distributions across iterations (where a specific constraint type is specified for each generation). As can be seen, while \textit{Inclusion} and \textit{Document Structure} constraints predominate in the initial iteration, the distribution becomes progressively more uniform as iterations proceed. This validates that by uncovering constraints which are not covered by previous refinement iterations, our iterative refinement process effectively ensures constraint diversity.
 
-We also present the domain distribution of DIR-10K in Figure \ref{figure:domain_dist}, following the domain definition in CFBench \citep{zhang2024cfbench}. As shown, our dataset encompasses nearly 20 different domains, exhibiting a high degree of balance across diverse fields. Furthermore, we analyzed the length distribution of the instructions using \textit{tiktoken}\footnote{We used \textit{o200k\_base} tokenizer for length calculation.}. As shown in Figure \ref{figure:length_dist}, the instruction lengths are primarily concentrated between 75 and 150 tokens, while the response lengths can scale to around 700 tokens, ensuring that our instructions provide sufficient information for aligning with complex instructions.
+We also present the domain distribution of DIR-10K in Figure \ref{figure:domain_dist}, following the domain definition in CFBench \citep{zhang2024cfbench}. As shown, our dataset encompasses nearly 20 different domains, exhibiting a high degree of balance across diverse fields. Furthermore, we analyzed the length distribution of the instructions using \textit{tiktoken}\footnote{We used \textit{o200k\_base} tokenizer for length calculation.}. As shown in Figure \ref{figure:length_dist}, the instruction lengths are primarily concentrated between 75 and 150 tokens, while the response lengths can scale to around 700 tokens, ensuring that our instructions provide sufficient information for alignment.
